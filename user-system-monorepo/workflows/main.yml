@@ -1,0 +1,34 @@
+name: Build & Test Monorepo
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  install-build-test:
+    name: Install, Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🛠 Build all projects with project references
+        run: pnpm run build
+
+      - name: ✅ Run tests
+        run: pnpm test
+
+      - name: 🧹 Lint code
+        run: pnpm lint
