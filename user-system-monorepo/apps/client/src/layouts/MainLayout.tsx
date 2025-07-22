@@ -36,6 +36,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -94,10 +95,26 @@ const MainLayout: React.FC = () => {
     dispatch(logout());
     navigate('/');
   };
-  const navLinks = [
-    { label: 'אודות', to: '/about', show: true },
-    { label: 'הכרטיסים שלי', to: '/my-cards', show: isAuthenticated && (user?.role === 'business' || user?.role === 'admin') },
+  // קביעת לוגו וכותרת לפי סוג המשתמש
+  let logoText = 'BCard';
+  let appBarColor = 'primary.main';
+  let navLinks = [
+    { label: 'ABOUT', to: '/about', show: true },
+    { label: 'FAV CARDS', to: '/favorites', show: isAuthenticated },
+    { label: 'MY CARDS', to: '/my-cards', show: isAuthenticated },
   ];
+  if (isAuthenticated && user) {
+    if (user.role === 'business') {
+      logoText = 'BusinessPro';
+      appBarColor = '#222';
+      navLinks.push({ label: 'ניהול לקוחות', to: '/crm', show: true });
+    }
+    if (user.role === 'admin') {
+      logoText = 'AdminPanel';
+      appBarColor = '#4B0082'; // צבע ייחודי לאדמין
+      navLinks.push({ label: 'SANDBOX', to: '/sandbox', show: true });
+    }
+  }
 
   useEffect(() => {
     switch (location.pathname) {
@@ -127,7 +144,8 @@ const MainLayout: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <AppBar position="sticky" sx={{ width: '100%' }}>
+      {/* AppBar מותאם לפי סוג המשתמש */}
+      <AppBar position="sticky" sx={{ width: '100%', bgcolor: appBarColor }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           <Typography
             variant="h6"
@@ -135,7 +153,7 @@ const MainLayout: React.FC = () => {
             to="/"
             sx={{ textDecoration: 'none', color: 'inherit', fontWeight: 'bold' }}
           >
-            MyDigitalCard
+            {logoText}
           </Typography>
 
           {/* Desktop nav links */}
@@ -223,16 +241,7 @@ const MainLayout: React.FC = () => {
             ) : (
               <>
                 <IconButton color="inherit" component={Link} to="/profile">
-                  <img
-                    src={user?.imagePath || 'https://placehold.co/40x40/cccccc/ffffff?text=User'}
-                    alt="User"
-                    style={{
-                      borderRadius: '8px',
-                      width: 40,
-                      height: 40,
-                      objectFit: 'cover',
-                    }}
-                  />
+                  <AccountCircleIcon fontSize="large" />
                 </IconButton>
                 <Button
                   variant="text"

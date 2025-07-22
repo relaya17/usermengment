@@ -1,0 +1,15 @@
+# Ignore all node_modules folders
+**/node_modules/
+
+# Ignore all dist/build folders
+**/dist/
+**/.tsbuildinfo
+
+# Ignore package manager lock files
+pnpm-lock.yaml
+
+# Ignore environment variables
+**/.env
+
+# Ignore editor settings
+.vscode/

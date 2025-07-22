@@ -1,0 +1,61 @@
+# ====== שרת (server) ======
+
+# node_modules של השרת
+server/node_modules/
+
+# לוגים של השרת
+server/logs
+server/*.log
+
+# קובצי סביבה בשרת
+server/.env
+server/.env.local
+server/.env.development.local
+server/.env.test.local
+server/.env.production.local
+
+# קאש ונתוני ריצה של השרת
+server/.nyc_output/
+server/coverage/
+server/.eslintcache
+server/.cache/
+
+# תיקיות IDE/OS בשרת
+server/.vscode/
+server/.idea/
+server/.DS_Store
+
+# ====== קליינט (client) ======
+
+# node_modules של הקליינט
+client/node_modules/
+
+# קבצי בנייה של הקליינט
+client/dist/
+client/build/
+
+# קובצי סביבה בקליינט (Vite)
+client/.env
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# קאש ונתוני קונפיג של הקליינט
+client/.vite/
+client/.eslintcache
+client/.cache/
+
+# תיקיות IDE/OS בקליינט
+client/.vscode/
+client/.idea/
+client/.DS_Store
+
+# ====== קבצים כלליים ======
+
+# לוגים כלליים
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
