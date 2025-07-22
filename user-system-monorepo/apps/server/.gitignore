@@ -1,61 +1,18 @@
-# ====== שרת (server) ======
+# user-system-monorepo/.gitignore
 
-# node_modules של השרת
-server/node_modules/
+# Ignore all node_modules folders
+**/node_modules/
 
-# לוגים של השרת
-server/logs
-server/*.log
+# Ignore all dist/build folders
+**/dist/
+**/.tsbuildinfo
 
-# קובצי סביבה בשרת
-server/.env
-server/.env.local
-server/.env.development.local
-server/.env.test.local
-server/.env.production.local
+# Ignore package manager lock files
+# 🆕 **הסר שורה זו!** קובץ pnpm-lock.yaml צריך להיות בבקרת גרסאות.
+# pnpm-lock.yaml
 
-# קאש ונתוני ריצה של השרת
-server/.nyc_output/
-server/coverage/
-server/.eslintcache
-server/.cache/
+# Ignore environment variables
+**/.env
 
-# תיקיות IDE/OS בשרת
-server/.vscode/
-server/.idea/
-server/.DS_Store
-
-# ====== קליינט (client) ======
-
-# node_modules של הקליינט
-client/node_modules/
-
-# קבצי בנייה של הקליינט
-client/dist/
-client/build/
-
-# קובצי סביבה בקליינט (Vite)
-client/.env
-client/.env.local
-client/.env.development.local
-client/.env.test.local
-client/.env.production.local
-
-# קאש ונתוני קונפיג של הקליינט
-client/.vite/
-client/.eslintcache
-client/.cache/
-
-# תיקיות IDE/OS בקליינט
-client/.vscode/
-client/.idea/
-client/.DS_Store
-
-# ====== קבצים כלליים ======
-
-# לוגים כלליים
-*.log
-
-# OS files
-.DS_Store
-Thumbs.db
+# Ignore editor settings
+.vscode/

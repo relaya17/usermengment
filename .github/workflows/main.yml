@@ -1,0 +1,113 @@
+# .github/workflows/main.yml
+# שם ה-Workflow שיוצג ב-GitHub Actions
+name: CI/CD for Monorepo
+
+# אירועים שיפעילו את ה-Workflow הזה
+on:
+  push:
+    branches:
+      - main # הפעל את ה-Workflow בכל פעם שיש push לענף main
+  pull_request:
+    branches:
+      - main # הפעל את ה-Workflow בכל פעם שיש Pull Request לענף main
+
+# הגדרת משתני סביבה גלובליים ל-Workflow (אופציונלי אך מומלץ)
+env:
+  NODE_VERSION: '18' # גרסת Node.js לשימוש
+  PNPM_VERSION: '8'  # גרסת pnpm לשימוש
+
+# הגדרת המשרות (Jobs) ב-Workflow
+jobs:
+  # משרה לבניית הפרויקטים
+  build:
+    runs-on: ubuntu-latest # הפעל את המשרה על מכונה וירטואלית של אובונטו
+    steps:
+      # שלב 1: Checkout - שכפול הקוד מהמאגר
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # שלב 2: התקנת pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false # לא להריץ pnpm install אוטומטית כאן
+
+      # שלב 3: התקנת Node.js
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm' # שימוש בקאש של pnpm למהירות
+
+      # שלב 4: התקנת תלויות ה-Monorepo
+      - name: Install Monorepo Dependencies
+        run: pnpm install --frozen-lockfile # התקנה נקייה ובטוחה
+
+      # שלב 5: בניית חבילת shared
+      - name: Build Shared Package
+        run: pnpm build --filter shared
+
+      # שלב 6: בניית אפליקציית השרת (server)
+      - name: Build Server Application
+        run: pnpm build --filter server
+
+      # שלב 7: בניית אפליקציית הלקוח (client)
+      - name: Build Client Application
+        run: pnpm build --filter client
+
+      # שלב 8: שמירת ארטיפקטים (קבצי בנייה)
+      # זה מאפשר למשרות פריסה עתידיות לגשת לקבצים שנבנו
+      - name: Upload Client Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-build
+          path: apps/client/dist # נתיב לתיקיית ה-build של הלקוח
+
+      - name: Upload Server Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-build
+          path: apps/server/dist # נתיב לתיקיית ה-build של השרת
+
+  # משרה לפריסת אפליקציית הלקוח (Frontend) ל-Firebase Hosting
+  deploy-client:
+    needs: build # משרה זו תרוץ רק לאחר שמשרת ה-build הסתיימה בהצלחה
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Client Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: client-build
+          path: apps/client/dist # הורדת קבצי ה-build לתיקייה זו
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}' # טוקן GitHub אוטומטי
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_USRMENGMENT }}' # משתנה סודי של חשבון השירות של Firebase
+          channelId: live
+          projectId: usermengment # שם הפרויקט שלך ב-Firebase
+          entryPoint: apps/client # הנתיב לתיקיית ה-client בתוך ה-Monorepo
+
+  # משרה לפריסת אפליקציית השרת (Backend) ל-Firebase Functions (אם אתה משתמש ב-Functions)
+  deploy-server:
+    needs: build # משרה זו תרוץ רק לאחר שמשרת ה-build הסתיימה בהצלחה
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Server Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: server-build
+          path: apps/server/dist # הורדת קבצי ה-build לתיקייה זו
+
+      - name: Deploy Firebase Functions
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_USRMENGMENT }}'
+          projectId: usermengment
+          entryPoint: apps/server # הנתיב לתיקיית ה-server בתוך ה-Monorepo
+          target: functions # פריסה ספציפית ל-Functions
+          # אם הפונקציות שלך נמצאות בתיקייה אחרת בתוך apps/server/dist, שנה את הנתיב בהתאם
+          # לדוגמה: run: firebase deploy --only functions:api --project usermengment
