@@ -1,19 +1,41 @@
+// user-system-monorepo/apps/client/tsconfig.json
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json", // מרחיב את קובץ הבסיס
   "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "tsBuildInfoFile": "../../.tsbuildinfo/client.tsbuildinfo",
-    "baseUrl": "./",
+    // 🆕 **הוספנו/עדכנו הגדרות קריטיות עבור פרויקט React/Vite:**
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // ספריות JavaScript סטנדרטיות
+    "module": "ESNext", // סוג מודולים
+    "moduleResolution": "bundler", // שיטת פתרון מודולים (חשוב עבור Vite)
+    "allowImportingTsExtensions": true, // מאפשר ייבוא עם סיומת .ts/.tsx
+    "esModuleInterop": true, // מאפשר ייבוא מודולים CommonJS כברירת מחדל
+    "jsx": "react-jsx", // קומפילציית JSX
+    "noEmit": true, // 🆕 **חשוב מאוד:** מונע מ-TypeScript לייצר קבצי JS משלו (Vite עושה זאת)
+
+    // 🆕 **הגדרות אלו אינן נחוצות בדרך כלל עבור יישום קצה (client app)
+    // ומיועדות יותר לחבילות (packages) ב-Monorepo שמייצרות קבצי הצהרה:**
+    // "composite": true,
+    // "declaration": true,
+    // "declarationMap": true,
+    // "outDir": "./dist",
+    // "rootDir": "./src",
+    // "tsBuildInfoFile": "../../.tsbuildinfo/client.tsbuildinfo",
+
+    "baseUrl": "./", // בסיס לנתיבים יחסיים
     "paths": {
-      "@shared/*": ["../../packages/shared/src/*"]
+      "@shared/*": ["../../packages/shared/src/*"] // נתיב לחבילה המשותפת
     },
-    "jsx": "react-jsx"
+
+    // 🆕 **הוספנו הגדרות קפדניות מומלצות:**
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  // 🆕 **עדכנו את ה-include כדי לכלול את כל קבצי ה-TypeScript/TSX ב-src**
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "vite.config.ts"],
+  "exclude": ["node_modules", "dist"],
+  // 🆕 **ה-references נראה בסדר, מופנה ל-shared**
   "references": [
     { "path": "../../packages/shared" }
   ]

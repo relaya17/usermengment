@@ -10,7 +10,7 @@ import { dirname } from 'path';
 import { upload } from './middlewares/upload.js';
 import { errorHandler } from './middlewares/errorMiddleware.js';
 
-import type { UserRole, UserRoles } from '@shared/types/userTypes.js';
+import type { UserRole, UserRoles } from '@shared/types/userTypes.js'; // עדכון הייבוא של UserRoles ו־UserRoleCannot find module 'dotenv' or its corresponding type declarations.ts(2307)
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

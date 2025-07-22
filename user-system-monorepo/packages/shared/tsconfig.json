@@ -6,7 +6,18 @@
     "declarationMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "tsBuildInfoFile": "../../.tsbuildinfo/shared.tsbuildinfo"
+    "baseUrl": "./",
+    "paths": {
+      "@shared/*": ["../../packages/shared/src/*"]
+    },
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+        "tsBuildInfoFile": "../../.tsbuildinfo/shared.tsbuildinfo",
+
   },
   "include": ["src"]
 }
