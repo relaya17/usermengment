@@ -1,0 +1,92 @@
+[debug] [2025-07-22T20:54:16.894Z] ----------------------------------------------------------------------
+[debug] [2025-07-22T20:54:16.897Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Local\pnpm\global\5\.pnpm\firebase-tools@14.11.0_@types+node@24.0.12_encoding@0.1.13\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-07-22T20:54:16.898Z] CLI Version:   14.11.0
+[debug] [2025-07-22T20:54:16.898Z] Platform:      win32
+[debug] [2025-07-22T20:54:16.898Z] Node Version:  v22.16.0
+[debug] [2025-07-22T20:54:16.898Z] Time:          Tue Jul 22 2025 23:54:16 GMT+0300 (שעון ישראל (קיץ))
+[debug] [2025-07-22T20:54:16.898Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-22T20:54:16.903Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-22T20:54:16.904Z] > authorizing via signed-in user (arleettt1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\user\Documents\GitHub\usermengment\user-system-monorepo
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-07-22T20:59:22.125Z] Checked if tokens are valid: false, expires at: 1753206749683
+[debug] [2025-07-22T20:59:22.125Z] Checked if tokens are valid: false, expires at: 1753206749683
+[debug] [2025-07-22T20:59:22.125Z] > refreshing access token with scopes: []
+[debug] [2025-07-22T20:59:22.127Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-07-22T20:59:22.127Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-07-22T20:59:22.857Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-07-22T20:59:22.857Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-07-22T20:59:22.869Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-07-22T20:59:23.346Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-07-22T20:59:23.346Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2025-07-22T21:03:58.592Z] ----------------------------------------------------------------------
+[debug] [2025-07-22T21:03:58.594Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Local\pnpm\global\5\.pnpm\firebase-tools@14.11.0_@types+node@24.0.12_encoding@0.1.13\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-07-22T21:03:58.594Z] CLI Version:   14.11.0
+[debug] [2025-07-22T21:03:58.595Z] Platform:      win32
+[debug] [2025-07-22T21:03:58.595Z] Node Version:  v22.16.0
+[debug] [2025-07-22T21:03:58.595Z] Time:          Wed Jul 23 2025 00:03:58 GMT+0300 (שעון ישראל (קיץ))
+[debug] [2025-07-22T21:03:58.595Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-22T21:03:58.600Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-22T21:03:58.601Z] > authorizing via signed-in user (arleettt1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\user\Documents\GitHub\usermengment\user-system-monorepo
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-07-22T21:09:48.309Z] Checked if tokens are valid: true, expires at: 1753221560857
+[debug] [2025-07-22T21:09:48.309Z] Checked if tokens are valid: true, expires at: 1753221560857
+[debug] [2025-07-22T21:09:48.311Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-07-22T21:09:48.843Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-07-22T21:09:48.843Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2025-07-22T21:12:37.957Z] ----------------------------------------------------------------------
+[debug] [2025-07-22T21:12:37.960Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Local\pnpm\global\5\.pnpm\firebase-tools@14.11.0_@types+node@24.0.12_encoding@0.1.13\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-07-22T21:12:37.960Z] CLI Version:   14.11.0
+[debug] [2025-07-22T21:12:37.960Z] Platform:      win32
+[debug] [2025-07-22T21:12:37.961Z] Node Version:  v22.16.0
+[debug] [2025-07-22T21:12:37.961Z] Time:          Wed Jul 23 2025 00:12:37 GMT+0300 (שעון ישראל (קיץ))
+[debug] [2025-07-22T21:12:37.961Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-07-22T21:12:37.967Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-22T21:12:37.967Z] > authorizing via signed-in user (arleettt1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\user\Documents\GitHub\usermengment\user-system-monorepo
+
